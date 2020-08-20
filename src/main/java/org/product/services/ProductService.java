@@ -11,4 +11,8 @@ public interface ProductService {
 
     List<Product> allProducts();
 
+    Product updateProduct(Integer id, ProductDTO productDTO);
+
+    Product getProduct(Integer id);
+
 }
