@@ -15,4 +15,6 @@ public interface ProductService {
 
     Product getProduct(Integer id);
 
+    void deleteProduct(Integer id);
+
 }
