@@ -23,8 +23,9 @@ public class Product {
     @JoinColumn(name = "container_id")
     private Container container;
 
-    private String name;
-    private Double value;
+    @Column(name = "product_id")
+    private Integer productId;
+
     private String type;
     private Integer quantity;
 

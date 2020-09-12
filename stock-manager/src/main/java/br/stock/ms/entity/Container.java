@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -25,7 +25,7 @@ public class Container {
     private String trackerId;
     
     @Column(name = "input_date")
-    private ZonedDateTime inputDate;
+    private LocalDateTime inputDate;
 
     private String company;
 

@@ -1,6 +1,7 @@
 package br.stock.ms.service;
 
 import br.stock.ms.dto.ContainerDTO;
+import br.stock.ms.dto.ContainerResponseDTO;
 import br.stock.ms.entity.Container;
 import br.stock.ms.exceptions.NotFoundException;
 import br.stock.ms.repository.ContainerRepository;
@@ -20,20 +21,21 @@ public class StockServiceImpl implements StockService {
     private ContainerRepository repository;
 
     @Override
-    public Container newOrder(ContainerDTO containerDTO) {
+    public ContainerResponseDTO newOrder(ContainerDTO containerDTO) {
 
         Container container = mapper.map(containerDTO, Container.class);
 
         Container save = repository.save(container);
 
-        return save;
+        return mapper.map(save, ContainerResponseDTO.class);
     }
 
     @Override
-    public Container getOrder(Integer id) {
+    public ContainerResponseDTO getOrder(Integer id) {
         Optional<Container> response = repository.findById(id);
+        Container localContainer = response.orElseThrow(() -> new NotFoundException("Order not found on local database"));
 
-        return response.orElseThrow(() -> new NotFoundException("Order not found on local database"));
+        return mapper.map(localContainer, ContainerResponseDTO.class);
     }
 
 }

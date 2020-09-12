@@ -11,9 +11,8 @@ DROP TABLE IF EXISTS products;
 
 CREATE TABLE products (
   id INT AUTO_INCREMENT  PRIMARY KEY,
+  product_id VARCHAR(250),
   container_id INT,
-  name VARCHAR(250),
-  value DOUBLE(10, 3),
   type VARCHAR(250),
   quantity INT
 );

@@ -1,11 +1,11 @@
 package br.stock.ms.service;
 
 import br.stock.ms.dto.ContainerDTO;
-import br.stock.ms.entity.Container;
+import br.stock.ms.dto.ContainerResponseDTO;
 
 public interface StockService {
 
-    Container newOrder(ContainerDTO container);
-    Container getOrder(Integer id);
+    ContainerResponseDTO newOrder(ContainerDTO container);
+    ContainerResponseDTO getOrder(Integer id);
 
 }
