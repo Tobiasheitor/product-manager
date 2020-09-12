@@ -6,4 +6,6 @@ import br.stock.ms.entity.Container;
 public interface StockService {
 
     Container newOrder(ContainerDTO container);
+    Container getOrder(Integer id);
+
 }

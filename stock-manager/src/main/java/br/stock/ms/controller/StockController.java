@@ -5,9 +5,7 @@ import br.stock.ms.entity.Container;
 import br.stock.ms.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class StockController {
@@ -18,6 +16,11 @@ public class StockController {
     @PostMapping("/container")
     public ResponseEntity<Container> newOrder(@RequestBody ContainerDTO container) {
         return ResponseEntity.ok(service.newOrder(container));
+    }
+
+    @GetMapping("container/{id}")
+    public ResponseEntity<Container> getOrder(@PathVariable Integer id) {
+        return ResponseEntity.ok(service.getOrder(id));
     }
 
 }

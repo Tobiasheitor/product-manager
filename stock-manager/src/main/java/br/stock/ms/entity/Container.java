@@ -23,14 +23,13 @@ public class Container {
 
     @Column(name = "tracker_id")
     private String trackerId;
-
+    
     @Column(name = "input_date")
     private ZonedDateTime inputDate;
 
     private String company;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "container_id", referencedColumnName = "id")
     private List<Product> products;
 
 }
