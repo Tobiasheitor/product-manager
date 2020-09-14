@@ -1,6 +1,7 @@
 package br.product.ms.controller;
 
 import br.product.ms.dto.ProductDTO;
+import br.product.ms.dto.ProductIdsDTO;
 import br.product.ms.entities.Product;
 import br.product.ms.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -56,4 +58,11 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/products")
+    public ResponseEntity validateProducts(@RequestBody @Valid ProductIdsDTO products) {
+
+        service.validateProducts(products);
+
+        return ResponseEntity.ok().build();
+    }
 }

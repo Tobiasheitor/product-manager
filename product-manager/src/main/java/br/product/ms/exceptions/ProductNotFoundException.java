@@ -7,4 +7,8 @@ public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException() {
         super(DEFAULT_MESSAGE);
     }
+
+    public ProductNotFoundException(String message) {
+        super(message);
+    }
 }

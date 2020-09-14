@@ -1,6 +1,7 @@
 package br.product.ms.services;
 
 import br.product.ms.dto.ProductDTO;
+import br.product.ms.dto.ProductIdsDTO;
 import br.product.ms.entities.Product;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface ProductService {
     Product getProduct(Integer id);
 
     void deleteProduct(Integer id);
+
+    void validateProducts(ProductIdsDTO products);
 
 }

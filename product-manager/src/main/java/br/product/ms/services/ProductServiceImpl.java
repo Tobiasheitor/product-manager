@@ -1,6 +1,7 @@
 package br.product.ms.services;
 
 import br.product.ms.dto.ProductDTO;
+import br.product.ms.dto.ProductIdsDTO;
 import br.product.ms.entities.Product;
 import br.product.ms.exceptions.ProductNotFoundException;
 import br.product.ms.repositories.ProductRepository;
@@ -8,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -63,5 +65,20 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Integer id) {
         repository.findById(id).orElseThrow(ProductNotFoundException::new);
         repository.deleteById(id);
+    }
+
+    @Override
+    public void validateProducts(@Valid ProductIdsDTO products) {
+        List<String> errors = new ArrayList<>();
+
+        products.getIds().forEach(id -> {
+            Optional<Product> product = repository.findById(id);
+            if (!product.isPresent()) {
+                errors.add("id " + id + " not found");
+            }
+        });
+
+        if (!errors.isEmpty())
+            throw new ProductNotFoundException(errors.toString());
     }
 }
