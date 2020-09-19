@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,6 +45,16 @@ public class StockServiceImpl implements StockService {
         Container localContainer = response.orElseThrow(() -> new NotFoundException("Order not found on local database"));
 
         return mapper.map(localContainer, ContainerResponseDTO.class);
+    }
+
+    @Override
+    public List<ContainerResponseDTO> getAllOrders() {
+        List<ContainerResponseDTO> response = new ArrayList<>();
+
+        Iterable<Container> localOrders = repository.findAll();
+        localOrders.forEach(order -> response.add(mapper.map(order, ContainerResponseDTO.class)));
+
+        return response;
     }
 
     private void validateProducts(List<ProductDTO> products) {

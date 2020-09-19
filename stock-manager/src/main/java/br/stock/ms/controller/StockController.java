@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class StockController {
 
@@ -21,6 +23,11 @@ public class StockController {
     @GetMapping("container/{id}")
     public ResponseEntity<ContainerResponseDTO> getOrder(@PathVariable Integer id) {
         return ResponseEntity.ok(service.getOrder(id));
+    }
+
+    @GetMapping("/containers")
+    public ResponseEntity<List<ContainerResponseDTO>> getAllOrders() {
+        return ResponseEntity.ok(service.getAllOrders());
     }
 
 }
