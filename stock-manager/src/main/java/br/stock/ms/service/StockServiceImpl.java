@@ -1,7 +1,9 @@
 package br.stock.ms.service;
 
+import br.stock.ms.client.ProductProxy;
 import br.stock.ms.dto.ContainerDTO;
 import br.stock.ms.dto.ContainerResponseDTO;
+import br.stock.ms.dto.ProductDTO;
 import br.stock.ms.entity.Container;
 import br.stock.ms.exceptions.NotFoundException;
 import br.stock.ms.repository.ContainerRepository;
@@ -9,7 +11,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StockServiceImpl implements StockService {
@@ -20,8 +24,12 @@ public class StockServiceImpl implements StockService {
     @Autowired
     private ContainerRepository repository;
 
+    @Autowired
+    private ProductProxy productProxy;
+
     @Override
     public ContainerResponseDTO newOrder(ContainerDTO containerDTO) {
+        validateProducts(containerDTO.getProducts());
 
         Container container = mapper.map(containerDTO, Container.class);
 
@@ -36,6 +44,12 @@ public class StockServiceImpl implements StockService {
         Container localContainer = response.orElseThrow(() -> new NotFoundException("Order not found on local database"));
 
         return mapper.map(localContainer, ContainerResponseDTO.class);
+    }
+
+    private void validateProducts(List<ProductDTO> products) {
+        List<Integer> productIds = products.stream().map(p -> p.getProductId()).collect(Collectors.toList());
+
+        productProxy.validateProducts(productIds);
     }
 
 }

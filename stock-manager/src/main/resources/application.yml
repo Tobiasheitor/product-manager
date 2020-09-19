@@ -1,8 +1,8 @@
 app:
   product-manager:
     name: product-manager
-    endpoint: http://localhost:8080/
+    endpoint: http://localhost:8090/
     paths:
-      product
+      products: products
 server:
-  port: 8081
+  port: 8080
