@@ -18,5 +18,3 @@ CREATE TABLE products (
 );
 
 ALTER TABLE products ADD CONSTRAINT IF NOT EXISTS PRODUCT_ID_FK FOREIGN KEY (container_id) REFERENCES containers(id);
-
---ALTER TABLE products ADD CONSTRAINT PRODUCT_ID_FK FOREIGN KEY (container_id) REFERENCES containers(id);

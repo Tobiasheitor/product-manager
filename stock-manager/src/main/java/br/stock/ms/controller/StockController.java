@@ -20,7 +20,7 @@ public class StockController {
         return ResponseEntity.ok(service.newOrder(container));
     }
 
-    @GetMapping("container/{id}")
+    @GetMapping("/container/{id}")
     public ResponseEntity<ContainerResponseDTO> getOrder(@PathVariable Integer id) {
         return ResponseEntity.ok(service.getOrder(id));
     }
