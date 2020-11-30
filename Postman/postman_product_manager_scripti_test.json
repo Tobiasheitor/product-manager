@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Product 01",
+    "description": "Produto description 1",
+    "value": 20,
+    "nameUpdate": "Product 01 u",
+    "descriptionUpdate": "Produto description 1 u",
+    "valueUpdate": 20.01,
+    "trackerId": "123P1",
+    "inputDate": "2020-09-19-00:00:00",
+    "company": "Company A",
+    "type": "lote",
+    "quantity_1": 10,
+    "quantity_2": 20
+  },
+  {
+    "name": "Product 02",
+    "description": "Produto description 2",
+    "value": 40,
+    "nameUpdate": "Product 02 u",
+    "descriptionUpdate": "Produto description 2 u",
+    "valueUpdate": 40.01,
+    "trackerId": "123P1",
+    "inputDate": "2020-09-19-00:00:00",
+    "company": "Company A",
+    "type": "lote",
+    "quantity_1": 30,
+    "quantity_2": 40
+  }
+]
